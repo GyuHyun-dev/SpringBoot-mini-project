@@ -1,11 +1,19 @@
 package com.mysite.board.user;
 
+import java.security.Principal;
+
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.mysite.board.PasswordGenerator;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +25,8 @@ public class UserController {
 
 	// 서비스 객체 생성
 	private final UserService userService;
+	private final EmailService emailService;
+	private final PasswordResetTokenStore tokenStore;
 
 	// GET으로 요청되면 회원 가입을 위한 템플릿을 렌더링
 	@GetMapping("/signup")
@@ -61,4 +71,11 @@ public class UserController {
 	public String login() {
 		return "login_form";
 	}
+
+	// 비밀번호 찾기
+	@GetMapping("/findingpassword")
+	public String findingpassword() {
+		return "finding_password";
+	}
+	
 }

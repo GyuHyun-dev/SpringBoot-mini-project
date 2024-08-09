@@ -1,4 +1,6 @@
-<html layout:decorate="~{layout}">
+<!-- 기존 -->
+
+<!--<html layout:decorate="~{layout}">
 <div layout:fragment="content" class="container my-3">
     <div class="my-3 border-bottom">
         <div>
@@ -23,8 +25,55 @@
             <label for="email" class="form-label">이메일</label>
             <input type="email" th:field="*{email}" class="form-control">
         </div>
-		<!-- 회원가입 버튼을 누르면 form 데이터가 POST 방식으로 /user/signup/ URL에 전송 -->
+		 회원가입 버튼을 누르면 form 데이터가 POST 방식으로 /user/signup/ URL에 전송 
         <button type="submit" class="btn btn-primary">회원가입</button>
     </form>
 </div>
 </html>
+-->
+
+<!-- 꾸민곳 -->
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3 d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-lg" style="width: 100%; max-width: 500px; padding: 2rem; border-radius: 10px;">
+        <div class="mb-4 text-center border-bottom pb-2">
+            <h3>회원가입</h3>
+        </div>
+        <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+            <!-- 에러 메시지 출력 -->
+            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+
+            <!-- 사용자ID -->
+            <div class="mb-3">
+                <label for="username" class="form-label">사용자ID</label>
+                <input type="text" th:field="*{username}" class="form-control" placeholder="아이디를 입력하세요" required>
+            </div>
+
+            <!-- 비밀번호 -->
+            <div class="mb-3">
+                <label for="password1" class="form-label">비밀번호</label>
+                <input type="password" th:field="*{password1}" class="form-control" placeholder="비밀번호를 입력하세요" required>
+            </div>
+
+            <!-- 비밀번호 확인 -->
+            <div class="mb-3">
+                <label for="password2" class="form-label">비밀번호 확인</label>
+                <input type="password" th:field="*{password2}" class="form-control" placeholder="비밀번호를 다시 입력하세요" required>
+            </div>
+
+            <!-- 이메일 -->
+            <div class="mb-3">
+                <label for="email" class="form-label">이메일</label>
+                <input type="email" th:field="*{email}" class="form-control" placeholder="이메일을 입력하세요" required>
+            </div>
+
+            <!-- 회원가입 버튼 -->
+            <button type="submit" class="btn btn-primary w-100">회원가입</button>
+        </form>
+        <div class="mt-3 text-center">
+            <p>이미 계정이 있으신가요? <a href="/user/login" class="text-decoration-none">로그인</a></p>
+        </div>
+    </div>
+</div>
+</html>
+

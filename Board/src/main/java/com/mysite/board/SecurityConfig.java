@@ -51,7 +51,7 @@ public class SecurityConfig {
 	}
 	 // 로그인시 시큐리티 인증 처리
 	 @Bean
-	 AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-	     return authenticationConfiguration.getAuthenticationManager();
+	    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+	        return authenticationConfiguration.getAuthenticationManager();
 	    }
 }

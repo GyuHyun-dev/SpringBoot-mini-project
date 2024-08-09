@@ -1,9 +1,9 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content" class="container my-3">
-	<!-- 검색기능 -->
+	  <!--검색기능-->  
 	<div class="row my-3">
 		<div class="col-6">
-			<a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
+			<a th:href="@{/question/create}" class="btn btn-primary">질문 등록</a>
 		</div>
 		<div class="col-6">
 			<div class="input-group">
@@ -12,7 +12,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 검색기능 끝 -->
+	  <!--검색기능 끝-->  
 
 	<table class="table">
 		<thead class="table-dark">
@@ -28,7 +28,7 @@
 				<td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
 				<td class="text-start">
 					<a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
-					<!-- 게시글 답변갯수 표시 -->
+					  <!--게시글 답변갯수 표시-->  
 					<span class="text-danger small ms-2" th:if="${#lists.size(question.answerList) > 0}"
 						th:text="${#lists.size(question.answerList)}">
 					</span>
@@ -39,7 +39,7 @@
 		</tbody>
 	</table>
 
-	<!-- 페이징처리 시작 -->
+	  <!--페이징처리 시작--> 
 	<div th:if="${!paging.isEmpty()}">
 		<ul class="pagination justify-content-center">
 			<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
@@ -59,7 +59,8 @@
 			</li>
 		</ul>
 	</div>
-	<!--페이징처리 끝-->
+	 <!--페이징처리 끝--> 
+	
 	<form th:action="@{/question/list}" method="get" id="searchForm">
 		<input type="hidden" id="kw" name="kw" th:value="${kw}">
 		<input type="hidden" id="page" name="page" th:value="${paging.number}">
@@ -82,3 +83,5 @@
 </script>
 
 </html>
+
+

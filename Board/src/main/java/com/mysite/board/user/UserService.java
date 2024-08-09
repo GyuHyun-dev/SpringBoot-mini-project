@@ -2,7 +2,6 @@ package com.mysite.board.user;
 
 import java.util.Optional;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,14 +26,27 @@ public class UserService {
 		this.userRepository.save(user);
 		return user;
 	}
-	
+
 	public SiteUser getUser(String username) {
-        Optional<SiteUser> siteUser = this.userRepository.findByusername(username);
-        if (siteUser.isPresent()) {
-            return siteUser.get();
-        } else {
-            throw new DataNotFoundException("siteuser not found");
-        }
-    }
+		Optional<SiteUser> siteUser = this.userRepository.findByusername(username);
+		if (siteUser.isPresent()) {
+			return siteUser.get();
+		} else {
+			throw new DataNotFoundException("siteuser not found");
+		}
+	}
+
+	public SiteUser findByEmail(String email) {
+		Optional<SiteUser> siteUser = this.userRepository.findByEmail(email);
+		if (siteUser.isPresent()) {
+			return siteUser.get();
+		} else {
+			return null;
+		}
+	}
+
+	public boolean checkPassword(SiteUser user, String rawPassword) {
+		return passwordEncoder.matches(rawPassword, user.getPassword());
+	}
 
 }
